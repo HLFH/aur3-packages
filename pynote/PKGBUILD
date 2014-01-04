@@ -17,5 +17,5 @@ install=pynote.install
 
 package() {
   cd "${srcdir}/${pkgname}-${pkgver}"
-  python setup.py install --prefix=/usr --root="${pkgdir}" -O1
+  python setup.py install --prefix=/usr --root="${pkgdir}" --optimize=1
 }
