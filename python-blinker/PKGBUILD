@@ -15,5 +15,5 @@ md5sums=('66e9688f2d287593a0e698cd8a5fbc57')
 
 package() {
   cd "$srcdir/blinker-$pkgver"
-  python setup.py install --root="$pkgdir/" --optimize=2
+  python setup.py install --root="$pkgdir/" --optimize=1
 }
