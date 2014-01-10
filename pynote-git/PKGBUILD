@@ -2,13 +2,13 @@
 
 pkgname=pynote-git
 _pkgname=pynote
-pkgver=0.1.r10.g81dffaf
+pkgver=0.1.r32.g9553c22
 pkgrel=1
 pkgdesc="Manage notes on the commandline."
 arch=('any')
 url="http://redmine.sevenbyte.org/projects/pynote"
 license=('MIT')
-depends=('python' 'python-prettytable')
+depends=('python' 'python-prettytable' 'python-pygments')
 makedepends=('git')
 conflicts=('pynote')
 provides=('pynote')
