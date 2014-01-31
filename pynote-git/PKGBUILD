@@ -2,7 +2,7 @@
 
 pkgname=pynote-git
 _pkgname=pynote
-pkgver=0.1.r47.g7421625
+pkgver=0.2.r1.g3fee3d7
 pkgrel=1
 pkgdesc="Manage notes on the commandline."
 arch=('any')
