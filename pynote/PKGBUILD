@@ -19,9 +19,3 @@ package() {
   cd "${srcdir}/${pkgname}-${pkgver}"
   python setup.py install --prefix=/usr --root="${pkgdir}" --optimize=1
 }
-
-# disabled, see #365
-#check() {
-#  cd "$srcdir/${pkgname}-${pkgver}"
-#  python tests.py
-#}
