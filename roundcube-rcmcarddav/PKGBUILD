@@ -1,0 +1,18 @@
+# Maintainer Stefan Tatschner <stefan@sevenbyte.org>
+
+pkgname=roundcube-rcmcarddav
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="CardDAV plugin for RoundCube Webmailer"
+arch=('any')
+url="https://github.com/blind-coder/rcmcarddav"
+license=('GPL')
+depends=('roundcubemail')
+source=("https://github.com/blind-coder/rcmcarddav/archive/carddav_${pkgver}.tar.gz")
+md5sums=('38a0246d0ed90d6f5ccb39bf09d08afd')
+
+package() {
+   mkdir -p ${pkgdir}/usr/share/webapps/roundcubemail/plugins
+   cd ${pkgdir}/usr/share/webapps/roundcubemail/plugins
+   cp -ra ${srcdir}/rcmcarddav-carddav_${pkgver} carddav
+}
