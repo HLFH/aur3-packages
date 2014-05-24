@@ -1,0 +1,20 @@
+# Maintainer: Stefan Tatschner <stefan@sevenbyte.org>
+
+pkgname=mybb-gomobile
+_pkgname=MyBB-GoMobile
+pkgver=1.1.ebc6ee81
+pkgrel=1
+pkgdesc="A simple post liking system for personal use. Integrated with MyAlerts"
+install=mybb-gomobile.install
+arch=('any')
+url=('https://github.com/euantorano/SimpleLikes/')
+license=('GPL')
+depends=('mybb')
+source=("${pkgname}::git+https://github.com/jasonliehr/${_pkgname}.git#commit=ebc6ee81109abac92f395669450c1bd8ecf5149f")
+md5sums=('9383c9f078672570b98eb68da5b9172b')
+
+package() {
+  mkdir -p ${pkgdir}/usr/share/webapps/mybb/
+  
+  cp -ra ${srcdir}/${pkgname}/Upload/{images,inc} ${pkgdir}/usr/share/webapps/mybb/
+}
