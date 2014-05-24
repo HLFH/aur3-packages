@@ -4,7 +4,7 @@
 
 pkgname=mybb
 pkgver=1.6.13
-pkgrel=1
+pkgrel=2
 pkgdesc="MyBB is a professional and efficient discussion board"
 backup=('etc/webapps/mybb/config.php'
         'etc/webapps/mybb/.htaccess')
@@ -12,8 +12,12 @@ install=mybb.install
 arch=('any')
 url=('http://mybb.com')
 license=('GPL')
-depends=('php' 'apache')
-optdepends=('mysql' 'postgresql' 'sqlite')
+depends=('php')
+optdepends=('apache:      Webserver to deploy mybb'
+            'nginx:       Webserver to deploy mybb'
+            'mysql:       Databaserver to deploy mybb'
+            'postgresql:  Databaserver to deploy mybb' 
+            'sqlite:      Database-Library to deploy mybb')
 # http://stackoverflow.com/a/4332399/2587286
 source=("https://github.com/mybb/mybb/archive/${pkgname}_${pkgver//./}.tar.gz")
 md5sums=('9ab3192d6ffebb9416d231e98a95b3d6')
