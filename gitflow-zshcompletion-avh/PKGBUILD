@@ -1,4 +1,4 @@
-# Contributor: Stefan Tatschner <stefan.tatschner@gmail.com>
+# Maintainer: Stefan Tatschner <stefan@sevenbyte.org>
 
 _pkgname=git-flow-completion
 pkgname=gitflow-zshcompletion-avh

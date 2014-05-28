@@ -1,5 +1,4 @@
-# Contributor: Stefan Tatschner <stefan.tatschner@gmail.com>
-# Maintainer: Stefan Tatschner <stefan.tatschner@gmail.com>
+# Maintainer: Stefan Tatschner <stefan@sevenbyte.org>
 
 _pkgname=gitflow
 pkgname=gitflow-avh
