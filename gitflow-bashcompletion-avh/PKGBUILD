@@ -13,7 +13,7 @@ source=("https://github.com/petervanderdoes/git-flow-completion/archive/${pkgver
 md5sums=('e4cc40aaf00a0e99e4e4b927c0dd49ee')
 
 package() {
-   cd "$srcdir/$_pkgname-$pkgver" 
+   cd "$srcdir/$_pkgname-$pkgver"
    install -d $pkgdir/etc/bash_completion.d
    install -m 0755 git-flow-completion.bash $pkgdir/etc/bash_completion.d/
 }

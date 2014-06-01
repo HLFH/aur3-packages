@@ -10,7 +10,7 @@ url='https://github.com/petervanderdoes/gitflow/'
 license=('BSD', 'LGPL')
 depends=('git')
 provides=('gitflow')
-conflicts=('gitflow' 'gitflow-git') 
+conflicts=('gitflow' 'gitflow-git')
 source=("https://github.com/petervanderdoes/gitflow/archive/${pkgver}.tar.gz")
 md5sums=('544c9cf142add598f742eaca9d11ec4f')
 

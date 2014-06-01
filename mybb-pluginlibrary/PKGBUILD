@@ -15,6 +15,6 @@ md5sums=('120e44041f0f86638efa2437e883f90a')
 
 package() {
   mkdir -p ${pkgdir}/usr/share/webapps/mybb/inc
-  
+
   cp -ra ${srcdir}/${_pkgname}-${pkgver}/inc/plugins ${pkgdir}/usr/share/webapps/mybb/inc/plugins
 }

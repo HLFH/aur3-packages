@@ -15,10 +15,10 @@ md5sums=('38a0246d0ed90d6f5ccb39bf09d08afd')
 package() {
    mkdir -p ${pkgdir}/usr/share/webapps/roundcubemail/plugins
    mkdir -p ${pkgdir}/etc/webapps/roundcubemail/plugins
-   
+
    cd ${pkgdir}/usr/share/webapps/roundcubemail/plugins
    cp -ra ${srcdir}/rcmcarddav-carddav_${pkgver} carddav
-   
+
    cd carddav
    cp config.inc.php.dist ${pkgdir}/etc/webapps/roundcubemail/plugins/config.inc.php
    ln -s /etc/webapps/roundcubemail/plugins/config.inc.php config.inc.php

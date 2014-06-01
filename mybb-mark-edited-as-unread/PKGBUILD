@@ -20,6 +20,6 @@ pkgver() {
 
 package() {
   mkdir -p ${pkgdir}/usr/share/webapps/mybb/
-  
+
   cp -ra ${srcdir}/${_pkgname}/root/inc ${pkgdir}/usr/share/webapps/mybb/
 }
