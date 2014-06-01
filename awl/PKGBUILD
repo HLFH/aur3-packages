@@ -1,4 +1,6 @@
-# Maintainer: Andre Wayand <aur-awl@awayand.sleepmail.com>
+# Maintainer: Stefan Tatschner <stefan@sevenbyte.org>
+# Contributor: Andre Wayand <aur-awl@awayand.sleepmail.com>
+
 pkgname=awl
 pkgver=0.54
 pkgrel=1
