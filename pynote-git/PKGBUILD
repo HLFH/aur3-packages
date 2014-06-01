@@ -18,12 +18,6 @@ pkgver() {
   #printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
-prepare() {
-  cd "${srcdir}/${_pkgname}"/doc
-  make man
-  make html
-}
-
 package_pynote-git() {
   pkgdesc="Manage notes on the commandline"
   depends=('python' 'python-plaintable-git' 'python-pygments' 'python-babel')
@@ -42,10 +36,13 @@ package_pynote-docs-git() {
   conflicts=('pynote-docs')
   provides=('pynote-docs')
   
-  cd "${srcdir}/${_pkgname}"
+  cd "${srcdir}/${_pkgname}"/doc
+  make man
+  make html
+  
   mkdir -p ${pkgdir}/usr/share/man/man5/
   mkdir -p ${pkgdir}/usr/share/doc/pynote/
   
-  cp -ra doc/man/noterc.5 ${pkgdir}/usr/share/man/man5/noterc.5
-  cp -ra doc/html/* ${pkgdir}/usr/share/doc/pynote/
+  cp -ra man/noterc.5 ${pkgdir}/usr/share/man/man5/noterc.5
+  cp -ra html/* ${pkgdir}/usr/share/doc/pynote/
 }
