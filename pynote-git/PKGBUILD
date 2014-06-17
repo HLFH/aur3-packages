@@ -20,7 +20,7 @@ pkgver() {
 
 package_pynote-git() {
   pkgdesc="Manage notes on the commandline"
-  depends=('python' 'python-plaintable-git' 'python-gitwrapper-git'
+  depends=('python' 'python-plaintable' 'python-gitwrapper-git'
            'python-pygments' 'python-babel')
   makedepends=('git' 'python-setuptools')
   conflicts=('pynote')
