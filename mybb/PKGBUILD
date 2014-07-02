@@ -3,8 +3,8 @@
 # Contributor: Piotr Rogoza <rogoza dot piotr at gmail dot com>
 
 pkgname=mybb
-pkgver=1.6.13
-pkgrel=2
+pkgver=1.6.14
+pkgrel=1
 pkgdesc="MyBB is a professional and efficient discussion board"
 backup=('etc/webapps/mybb/config.php'
         'etc/webapps/mybb/.htaccess')
@@ -20,7 +20,7 @@ optdepends=('apache:      Webserver to deploy mybb'
             'sqlite:      Database-Library to deploy mybb')
 # http://stackoverflow.com/a/4332399/2587286
 source=("https://github.com/mybb/mybb/archive/${pkgname}_${pkgver//./}.tar.gz")
-md5sums=('9ab3192d6ffebb9416d231e98a95b3d6')
+md5sums=('3d3861fb3090d9a69b909037c247704c')
 
 package() {
   mkdir -p ${pkgdir}/usr/share/webapps
