@@ -8,7 +8,8 @@ arch=('any')
 url="http://getpelican.com"
 license=('AGPL3')
 depends=('python-jinja' 'python-pygments' 'python-feedgenerator' 'python-pytz'
-         'python-docutils' 'python-blinker' 'python-unidecode' 'python-six')
+         'python-docutils' 'python-blinker' 'python-unidecode' 'python-six'
+         'python-dateutil')
 optdepends=('python-markdown:       for Markdown support'
             'asciidoc:              for AsciiDoc support'
             'python-beautifulsoup4: for importing from wordpress/dotclear/posterous'
