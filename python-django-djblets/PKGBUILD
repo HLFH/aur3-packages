@@ -15,8 +15,8 @@ sha256sums=('dd6cd44cdbca3a1506646eabbdeeee07fad84cfaa6a0aa635a764602abadf615')
 
 package_python-django-djblets() {
   depends=('python-django' 'python-feedparser' 'python-pytz'
-           'python-pillow' 'nodejs-uglify-js' 'lessc')
-  makedepends=('python-setuptools')
+           'python-pillow' 'nodejs-uglify-js')
+  makedepends=('python-setuptools' 'lessc')
 
   cd "${srcdir}/${_pkgname}-release-${pkgver}"
   python setup.py install --prefix=/usr --root="${pkgdir}" --optimize=1
@@ -24,8 +24,8 @@ package_python-django-djblets() {
 
 package_python2-django-djblets() {
   depends=('python2-django' 'python2-feedparser' 'python2-pytz'
-           'python2-pillow' 'nodejs-uglify-js' 'lessc')
-  makedepends=('python2-setuptools')
+           'python2-pillow' 'nodejs-uglify-js')
+  makedepends=('python2-setuptools' 'lessc')
 
   cd "${srcdir}/${_pkgname}-release-${pkgver}"
   python2 setup.py install --prefix=/usr --root="${pkgdir}" --optimize=1
