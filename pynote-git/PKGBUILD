@@ -41,11 +41,11 @@ package_pynote-docs-git() {
   make man
   make html
 
-  mkdir -p ${pkgdir}/usr/share/man/man5/
   mkdir -p ${pkgdir}/usr/share/man/man1/
+  mkdir -p ${pkgdir}/usr/share/man/man5/
   mkdir -p ${pkgdir}/usr/share/doc/pynote/
 
+  cp -ra man/noterc.1 ${pkgdir}/usr/share/man/man1/note.1
   cp -ra man/noterc.5 ${pkgdir}/usr/share/man/man5/noterc.5
-  cp -ra man/noterc.5 ${pkgdir}/usr/share/man/man1/note.1
   cp -ra html/* ${pkgdir}/usr/share/doc/pynote/
 }
