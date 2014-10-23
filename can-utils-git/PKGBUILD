@@ -27,6 +27,5 @@ build() {
 
 package() {
   cd "${srcdir}/${_pkgname}"
-  mkdir -p $pkgdir/usr/local/bin
   make DESTDIR="$pkgdir/" install
 }
