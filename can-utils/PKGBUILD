@@ -9,6 +9,8 @@ arch=('i686' 'x86_64')
 url="https://gitorious.org/linux-can/can-utils"
 license=('GPLv2')
 makedepends=(git libtool)
+provides=can-utils
+conflicts=can-utils-git
 source=("git+https://git.gitorious.org/linux-can/can-utils.git#commit=${_commit}")
 md5sums=('SKIP')
 
