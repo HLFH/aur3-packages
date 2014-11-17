@@ -14,7 +14,8 @@ optdepends=('postgresql'
             'postfix: mail server in order to receive mail notifications'
             'jpegoptim'
             'pngcrush'
-            'pngout')
+            'pngout'
+            'optipng')
 backup=("etc/webapps/discourse/unicorn.conf.rb"
         "etc/webapps/discourse/discourse.conf")
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/discourse/discourse/archive/v${pkgver}.tar.gz"
