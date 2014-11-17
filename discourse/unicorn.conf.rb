@@ -1,3 +1,6 @@
+# enable out of band gc out of the box, it is low risk and improves perf a lot
+ENV['UNICORN_ENABLE_OOBGC'] ||= "1"
+
 # Use at least one worker per core if you're on a dedicated server,
 # more will usually help for _short_ waits on databases/caches.
 worker_processes 2
@@ -34,8 +37,13 @@ stdout_path '/var/log/discourse/unicorn.stdout.log'
 # combine Ruby 2.0.0dev or REE with "preload_app true" for memory savings
 # http://rubyenterpriseedition.com/faq.html#adapt_apps_for_cow
 preload_app true
-GC.respond_to?(:copy_on_write_friendly=) and
-  GC.copy_on_write_friendly = true
+
+# If 'UNICORN_ENABLE_OOBGC' is unset let's use GC.copy_on_write_friendly = true.
+# http://unicorn.bogomips.org/Unicorn/Configurator.html
+unless ENV['UNICORN_ENABLE_OOBGC']
+  GC.respond_to?(:copy_on_write_friendly=) and
+    GC.copy_on_write_friendly = true
+end
 
 # Enable this flag to have unicorn test client connections by writing the
 # beginning of the HTTP headers before calling the application.  This
@@ -49,18 +57,32 @@ check_client_connection false
 run_once = true
 
 before_fork do |server, worker|
-  # the following is highly recomended for Rails + "preload_app true"
-  # as there's no need for the master process to hold a connection
-  defined?(ActiveRecord::Base) and
-    ActiveRecord::Base.connection.disconnect!
-
   # Occasionally, it may be necessary to run non-idempotent code in the
   # master before forking.  Keep in mind the above disconnect! example
   # is idempotent and does not need a guard.
   if run_once
-    # do_something_once_here ...
+    # load up the yaml for the localization bits, in master process
+    I18n.t(:posts)
+
+    # load up all models and schema
+    (ActiveRecord::Base.connection.tables - %w[schema_migrations]).each do |table|
+      table.classify.constantize.first rescue nil
+    end
+
+    # router warm up
+    Rails.application.routes.recognize_path('abc') rescue nil
+
+    # get rid of rubbish so we don't share it
+    GC.start
+
     run_once = false # prevent from firing again
   end
+
+  # the following is highly recomended for Rails + "preload_app true"
+  # as there's no need for the master process to hold a connection
+  defined?(ActiveRecord::Base) and
+    ActiveRecord::Base.connection.disconnect!
+  $redis.client.disconnect
 
   # The following is only recommended for memory/DB-constrained
   # installations.  It is not needed if your system can house
@@ -84,21 +106,9 @@ before_fork do |server, worker|
   # to the implementation of standard Unix signal handlers, this
   # helps (but does not completely) prevent identical, repeated signals
   # from being lost when the receiving process is busy.
-  # sleep 1
+  sleep 1
 end
 
 after_fork do |server, worker|
-  # per-process listener ports for debugging/admin/migrations
-  # addr = "127.0.0.1:#{9293 + worker.nr}"
-  # server.listen(addr, :tries => -1, :delay => 5, :tcp_nopush => true)
-
-  # the following is *required* for Rails + "preload_app true",
-  defined?(ActiveRecord::Base) and
-    ActiveRecord::Base.establish_connection
-
-  # if preload_app is true, then you may also want to check and
-  # restart any other shared sockets/descriptors such as Memcached,
-  # and Redis.  TokyoCabinet file handles are safe to reuse
-  # between any number of forked children (assuming your kernel
-  # correctly implements pread()/pwrite() system calls)
+  Discourse.after_fork
 end
