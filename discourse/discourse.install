@@ -1,4 +1,5 @@
 _homedir="/var/lib/discourse"
+_datadir="/usr/share/webapps/discourse"
 
 fix_perms() {
 	chown -R discourse:discourse "${_homedir}"
