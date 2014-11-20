@@ -3,7 +3,7 @@
 
 pkgname=discourse
 pkgver=1.1.0
-pkgrel=2
+pkgrel=3
 pkgdesc="A simple, flat forum, where replies flow down the page in a line"
 arch=('i686' 'x86_64')
 url="http://www.discourse.org/"
