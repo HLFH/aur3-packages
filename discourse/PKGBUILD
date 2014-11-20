@@ -10,12 +10,14 @@ url="http://www.discourse.org/"
 license=('GPL')
 depends=('ruby>=2.0' 'ruby-bundler>=1.5.2' 'gmp' 'libxml2' 'libxslt' 'openssl'
          'krb5' 'libgcrypt' 'libgpg-error' 'postgresql-libs' 'xz' 'zlib')
-optdepends=('postgresql'
+optdepends=('apache: a webserver to deploy discourse'
+            'nginx: another webserver to deploy discourse (example configs have to be fixed!)'
+            'postgresql: database server'
             'postfix: mail server in order to receive mail notifications'
-            'jpegoptim'
-            'pngcrush'
-            'pngout'
-            'optipng')
+            'jpegoptim: needed to do optimizations on stored images'
+            'pngcrush: needed to do optimizations on stored images'
+            'pngout: needed to do optimizations on stored images'
+            'optipng: needed to do optimizations on stored images')
 backup=("etc/webapps/discourse/unicorn.conf.rb"
         "etc/webapps/discourse/discourse.conf")
 source=("${pkgname}::git+https://github.com/discourse/discourse.git#tag=v${pkgver}"
