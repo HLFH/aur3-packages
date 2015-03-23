@@ -1,0 +1,45 @@
+# Maintainer : Kevin MacMartin <prurigro@gmail.com>
+
+pkgname=syncthing-discosrv-git
+_pkgname=syncthing-discosrv
+pkgver=r34.636ea5b
+pkgrel=1
+pkgdesc="Discover server for the syncthing P2P synchronization utility"
+url="http://syncthing.net"
+license=('MIT')
+install=${_pkgname}.install
+depends=('glibc')
+makedepends=('git' 'go' 'godep')
+arch=('i686' 'x86_64' 'armv6h' 'armv7h')
+
+source=("${_pkgname}.service"
+        "${_pkgname}.tmpfiles.conf"
+        "${_pkgname}::git+https://github.com/syncthing/discosrv.git")
+sha256sums=('db02e461b82c71f6c943a935f4847c6d4c778d160efbd4954285c6768d0bf9ff'
+            '4472d99024825a46d58c0d03be19c6593ac0f75c9e9697795edcd31ec353928d'
+            'SKIP')
+
+pkgver() {
+    cd "${srcdir}/${_pkgname}"
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+    cd "${srcdir}"
+    mkdir -p "${srcdir}/src/github.com/syncthing/discosrv"
+    mv ${_pkgname}/* "${srcdir}/src/github.com/syncthing/discosrv/"
+}
+
+build() {
+    export GOPATH="${srcdir}"
+    cd "${srcdir}/src/github.com/syncthing/discosrv"
+    go get -d
+    go build
+}
+
+package() {
+    install -Dm644 "${srcdir}/${_pkgname}.service" "${pkgdir}/usr/lib/systemd/system/${_pkgname}.service"
+    install -Dm644 "${srcdir}/${_pkgname}.tmpfiles.conf" "${pkgdir}/usr/lib/tmpfiles.d/${_pkgname}.conf"
+    install -Dm644 "${srcdir}/src/github.com/syncthing/discosrv/LICENSE" "${pkgdir}/usr/share/licenses/${_pkgname}/LICENSE"
+    install -Dm755 "${srcdir}/src/github.com/syncthing/discosrv/discosrv" "${pkgdir}/usr/bin/${_pkgname}"
+}

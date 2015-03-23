@@ -1,0 +1,5 @@
+post_install() {
+    groupadd syncthing-discovery &>/dev/null
+    useradd -d "/var/discosrv" -g syncthing-discovery -s "/bin/nologin" syncthing-discovery
+    systemd-tmpfiles --create syncthing-discosrv.conf
+}
