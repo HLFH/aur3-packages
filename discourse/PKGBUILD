@@ -56,13 +56,6 @@ _systemddir="/usr/lib/systemd/system"
 prepare() {
   cd "${srcdir}/${pkgname}"
 
-  # Patch source files to include a static revision string and remove git repo.
-  # Including the git repository triples the package size.
-  _revision=$(git log --pretty=format:%H -n 1)
-  msg2 "Patching discourse revision number ${_revision} to a static string..."
-  sed -i "s|<%= Discourse.git_version %>|${_revision}|g" "app/views/layouts/_head.html.erb"
-  rm -rf .git
-
   msg2 "Patching discourse_defaults.conf to serve assets..."
   sed -i "s|serve_static_assets = false|serve_static_assets = true|g" "config/discourse_defaults.conf"
 }
