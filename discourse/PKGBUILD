@@ -61,10 +61,10 @@ prepare() {
   _revision=$(git rev-parse HEAD)
   _revision_describe=$(git describe --dirty)
   msg2 "Patching internal revision numbers ${_revision} to a static string..."
-  sed -i "s|`git rev-parse HEAD`|${_revision}|g" "lib/discourse.rb"
+  sed -i "s|\`git rev-parse HEAD\`|'${_revision}'|g" "lib/discourse.rb"
   # This one is used on the dashboard, see:
   # https://github.com/discourse/discourse/commit/f1b606bf0890eb1f23cb9cbb9f35af86f4b94245
-  sed -i "s|`git describe --dirty`|${_revision_describe}|g" "lib/discourse_updates.rb"
+  sed -i "s|\`git describe --dirty\`|'${_revision_describe}'|g" "lib/discourse_updates.rb"
   rm -rf .git
 
   msg2 "Patching discourse_defaults.conf to serve assets..."
