@@ -65,6 +65,9 @@ prepare() {
   # Including the git repository triples the package size.
   _revision=$(git rev-parse HEAD)
   _revision_describe=$(git describe --dirty)
+  if [ $_revision_describe = "latest-release" ]; then
+      _revision_describe=$pkgver
+  fi
   msg2 "Patching internal revision numbers ${_revision} to a static string..."
   sed -i "s|\`git rev-parse HEAD\`|'${_revision}'|g" "lib/discourse.rb"
   # This one is used on the dashboard, see:
