@@ -58,9 +58,13 @@ prepare() {
 
   # Patch source files to include a static revision string and remove git repo.
   # Including the git repository triples the package size.
-  _revision=$(git log --pretty=format:%H -n 1)
-  msg2 "Patching discourse revision number ${_revision} to a static string..."
-  sed -i "s|<%= Discourse.git_version %>|${_revision}|g" "app/views/layouts/_head.html.erb"
+  _revision=$(git rev-parse HEAD)
+  _revision_describe=$(git describe --dirty)
+  msg2 "Patching internal revision numbers ${_revision} to a static string..."
+  sed -i "s|`git rev-parse HEAD`|${_revision}|g" "lib/discourse.rb"
+  # This one is used on the dashboard, see:
+  # https://github.com/discourse/discourse/commit/f1b606bf0890eb1f23cb9cbb9f35af86f4b94245
+  sed -i "s|`git describe --dirty`|${_revision_describe}|g" "lib/discourse_updates.rb"
   rm -rf .git
 
   msg2 "Patching discourse_defaults.conf to serve assets..."
