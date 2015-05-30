@@ -1,14 +1,16 @@
 # Maintainer: Stefan Tatschner <stefan@sevenbyte.org>
 
-pkgname=prezto-prompt-rumpelsepp
-pkgver=r5.8cf4c6b
+pkgname=prezto-prompt-rumpelsepp-git
+pkgver=r7.6b08a94
 pkgrel=1
 pkgdesc="My personal prezto theme"
 arch=('any')
-url='https://gist.github.com/rumpelsepp/02cdb5bd05fe6949b17b'
+url='https://gitlab.sevenbyte.org/rumpelsepp/prezto-prompt-rumpelsepp'
 license=('MIT')
 depends=('prezto-git')
-source=("${pkgname}::git+https://gist.github.com/02cdb5bd05fe6949b17b.git#commit=8cf4c6b0a4949aba38af15528d06e5f358928c34")
+provides=(prompt-rumpelsepp-setup)
+conflicts=(prompt-rumpelsepp-setup)
+source=("${pkgname}::git+https://gitlab.sevenbyte.org/rumpelsepp/prezto-prompt-rumpelsepp.git")
 md5sums=('SKIP')
 
 pkgver() {
