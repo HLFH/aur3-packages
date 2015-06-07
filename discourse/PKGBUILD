@@ -19,6 +19,10 @@ optdepends=('apache: a webserver to deploy discourse'
             'pngcrush: needed to do optimizations on stored images'
             'pngout: needed to do optimizations on stored images'
             'advancecomp: needed to do optimizations on stored images'
+            'gifsicle: needed to do optimizations on stored images'
+            'jhead: needed to do optimizations on stored images'
+            'nodejs-svgo: needed to do optimizations on stored images'
+            'pngquant: needed to do optimizations on stored images'
             'optipng: needed to do optimizations on stored images')
 backup=("etc/webapps/discourse/unicorn.conf.rb"
         "etc/webapps/discourse/discourse.conf")
